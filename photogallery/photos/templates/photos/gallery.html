@@ -28,63 +28,35 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">All</li>
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                        {% for category in categories %}
+                        <li class="list-group-item">{{category.name}}</li>
+                        {% endfor %}
+                      
                         <a href="{% url 'add' %}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
                     </ul>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="row">
+
+                    {% for photo in photos %}
                     <div class="col-md-4">
                         <div class="card my-2">
                             <img class="image-thumbnail"
-                                src="https://i.natgeofe.com/n/f0dccaca-174b-48a5-b944-9bcddf913645/01-cat-questions-nationalgeographic_1228126_3x4.jpg"
+                                src="{{photo.image.url}}"
                                 alt="Card image cap">
+
                             <div class="card-body">
-                                <small>Cateegory: Pets</small>
+                                <small>Category: {{photo.category.name}}</small>
                             </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
+                    {% empty %}
+                    <h3> No photos...<h3>
+                    {% endfor %}
 
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbnail"
-                                src="https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <small>Cateegory: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbnail"
-                                src="https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <small>Cateegory: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbnail"
-                                src="https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <small>Cateegory: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-
+        
                 </div>
             </div>
         </div>
