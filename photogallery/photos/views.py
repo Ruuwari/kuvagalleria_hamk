@@ -5,8 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 # Create your views here.
 
-
-
 def loginUser(request):
     page = 'login'
     if request.method == 'POST':
@@ -91,3 +89,9 @@ def addPhoto(request):
 
     context = {'categories': categories}
     return render(request, 'photos/add.html', context)
+
+@login_required(login_url='login')
+def deletePhoto(request, pk):
+    photos = Photo.objects.filter(id=pk)
+    photos.delete()
+    return redirect('gallery')
